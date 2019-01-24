@@ -1,5 +1,5 @@
 package fracCalc;
-
+//kappa
 public class Fraction {
 	private int defaultwhole;
 	private String operator;
