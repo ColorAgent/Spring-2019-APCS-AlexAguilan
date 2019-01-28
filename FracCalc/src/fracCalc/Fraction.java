@@ -1,23 +1,30 @@
 package fracCalc;
 //kappa
 public class Fraction {
-	private int defaultwhole;
 	private String operator;
+	private int defaultwhole;
 	private int defaultnumerator;
 	private int defaultdenominator;
 	private String fraction1;
+	private int numerator1;
+	private int denominator1;
 	private String fraction2;
-	private Fraction answer1;
+	private int numerator2;
+	private int denominator2;
+	private String answer;
 
+	//default fraction variables
 	public Fraction() { 
 		this.defaultwhole = 0;
 		this.defaultnumerator = 0;
 		this.defaultdenominator = 1;
 	}
+	//converts the first and second fractions into improper numbers
 	public Fraction(String op) {
 		//include code to parse the string and set the values for the fields
 		//cut into 3 strings
 		String[] fraction = op.split(" ");
+		this.operator = fraction[1];
 		String operand1  = fraction[0];
 		String[] fraction1parts = operand1.split("[_/]");
 		int whole1 = 0;
@@ -36,7 +43,7 @@ public class Fraction {
 				numerator1 = Integer.parseInt(fraction1parts[1]);
 				denominator1 = Integer.parseInt(fraction1parts[2]);
 			} else {
-				whole1 = Integer.parseInt(defaultvalue[0]);
+				whole1 = defaultwhole;
 				numerator1 = Integer.parseInt(NoWholeArray[0]);
 				denominator1 = Integer.parseInt(NoWholeArray[1]);
 			}
@@ -54,6 +61,8 @@ public class Fraction {
 		}
 		//turns them into integers --> store in the fields
 		this.fraction1 = impropernum1 + "/" + improperdenom1;
+		this.numerator1 = impropernum1;
+		this.denominator1 = improperdenom1;
 
 				
 		String operand2 = fraction[2];
@@ -64,8 +73,8 @@ public class Fraction {
 		// checks the 2nd fraction to see if its a whole num or fraction
 		if (fraction2parts.length < 2) {
 			whole2 = Integer.parseInt(fraction2parts[0]);
-			numerator2 = Integer.parseInt(defaultvalue[1]);         
-			denominator2 = Integer.parseInt(defaultvalue[2]);
+			numerator2 = defaultnumerator;         
+			denominator2 = defaultdenominator;
 		}
 		if (fraction2parts.length > 1) {
 			String[] NoWholeArray = operand2.split("[_/]");
@@ -74,7 +83,7 @@ public class Fraction {
 				numerator2 = Integer.parseInt(fraction2parts[1]);
 				denominator2 = Integer.parseInt(fraction2parts[2]);
 			} else {
-				whole2 = Integer.parseInt(defaultvalue[0]);
+				whole2 = defaultwhole;
 				numerator2 = Integer.parseInt(NoWholeArray[0]);
 				denominator2 = Integer.parseInt(NoWholeArray[1]);
 			}
@@ -91,18 +100,61 @@ public class Fraction {
 			} else
 			impropernum2 = absValue(impropernum2);
 		}
+		//turns them into integers --> store in the fields
 		this.fraction2 = impropernum2 + "/" + improperdenom2;
+		this.numerator2 = improperdenom2;
+		this.denominator2 = improperdenom2;
 	}
-	// I do math by solving equations
-	public Fraction math(Fraction op2) {
+	// Does the math and returns the answer
+	public Fraction math(String op2) {
 		//do the math to add fractions
-		
+		this.operator = op2;
+		if (denominator1 != denominator2) {
+			if (operator.contains("-")) {
+				int answerNum = (numerator2 * denominator1) - (numerator1 * denominator2);
+				int NewDenom = denominator1 * denominator2;
+				if (fraction1.contains("-") && fraction2.contains("-")) {
+					answerNum = answerNum * -1;
+				}
+				this.answer = answerNum + "/" + NewDenom;
+			}
+			if (operator.contains("+")) {
+				int answerNum = (numerator1 * denominator2) + (numerator2 * denominator1);
+				int NewDenom = denominator1 * denominator2;
+				this.answer = answerNum + "/" + NewDenom;
+			}
+			if (operator.contains("*")) {
+				int answerNum = numerator1 * numerator2;
+				int NewDenom = denominator1 * denominator2;
+				this.answer = answerNum + "/" + NewDenom;
+			}
+			if (operator.contains("/")) {
+				int answerNum = numerator1 * denominator2;
+				int NewDenom = numerator2 * denominator1;
+				this.answer = answerNum + "/" + NewDenom; //you can simplify
+			}
+		}
+		if (denominator1 == denominator2) {
+			if (operator.contains("-")) {
+				int answerNum = numerator1 - numerator2;
+				this.answer = answerNum + "/" + denominator1;
+			}
+			if (operator.contains("+")) {
+				int answerNum = numerator1 + numerator2;
+				this.answer = answerNum + "/" + denominator1;
+			}
+			if (operator.contains("*")) {
+				int answerNum = numerator1 * numerator2;
+				this.answer = answerNum + "/" + denominator1;
+			}
+			if (operator.contains("/")) {
+				int answerNum = numerator1 * denominator2;
+				int NewDenom = numerator2 * denominator1;
+				this.answer = answerNum + "/" + NewDenom; //you can simplify
+			}
+		}
 		Fraction answer = new Fraction();
-		//get common denom
-		//add the numerators
-		
-		//set answers values
-		return answer1;
+		return answer;
 	}
 	// turns the mixed number into an improper fraction
 	public static String toImproperFrac(int whole, int numerator, int denominator) {
