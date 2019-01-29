@@ -6,7 +6,7 @@ public class FracCalc {
 
     public static void main(String[] args) 
     {
-    	System.out.print(produceAnswer("1_1/7 + 3_2/7"));
+    	System.out.print(produceAnswer("124543 + 897235"));
     	
         // TODO: Read the input from the user and call produceAnswer with an equation
 
@@ -24,7 +24,6 @@ public class FracCalc {
     { 
         // TODO: Implement this function to produce the solution to the input
         Fraction name = new Fraction(input);
-        String[] eparts = input.split(" ");
         name.Math(name.GetOp());
         return name.GetAnswer();
     }
