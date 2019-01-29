@@ -102,13 +102,12 @@ public class Fraction {
 		}
 		//turns them into integers --> store in the fields
 		this.fraction2 = impropernum2 + "/" + improperdenom2;
-		this.numerator2 = improperdenom2;
+		this.numerator2 = impropernum2;
 		this.denominator2 = improperdenom2;
 	}
 	// Does the math and returns the answer
-	public Fraction math(String op2) {
+	public String Math(String op) {
 		//do the math to add fractions
-		this.operator = op2;
 		if (denominator1 != denominator2) {
 			if (operator.contains("-")) {
 				int answerNum = (numerator2 * denominator1) - (numerator1 * denominator2);
@@ -153,7 +152,14 @@ public class Fraction {
 				this.answer = answerNum + "/" + NewDenom; //you can simplify
 			}
 		}
-		Fraction answer = new Fraction();
+		return answer;
+	}
+	// gets the operator
+	public String GetOp() {
+		return operator;
+	}
+	// gets the answer
+	public String GetAnswer() {
 		return answer;
 	}
 	// turns the mixed number into an improper fraction
