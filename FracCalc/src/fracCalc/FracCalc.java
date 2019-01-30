@@ -1,15 +1,28 @@
 package fracCalc;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class FracCalc {
 
-    public static void main(String[] args) 
-    {
-    	System.out.print(produceAnswer("124543 + 897235"));
-    	
-        // TODO: Read the input from the user and call produceAnswer with an equation
-
+    public static void main(String[] args) {
+    	Scanner UserInputs = new Scanner(System.in);
+		boolean Continue = true;
+		System.out.println("Welcome to FracCalc");
+        
+		//Reads the input from the user and call produceAnswer with an equation
+		//ask user for variables and does things
+		
+		while(Continue){
+			String Input = UserInputs.next();
+			System.out.println(produceAnswer(Input));	
+			//ask the user if the user wants to quit and closes the loop if yes
+			System.out.println("Do you want to keep going? (Type \"quit\" to end)");
+			if(UserInputs.next().equals("quit")){
+				Continue = false;
+				UserInputs.close();
+			}
+		}
     }
     
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -25,7 +38,7 @@ public class FracCalc {
         // TODO: Implement this function to produce the solution to the input
         Fraction name = new Fraction(input);
         name.Math(name.GetOp());
-        return name.GetFrac1() + " ";
+        return name.GetAnswer();
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need

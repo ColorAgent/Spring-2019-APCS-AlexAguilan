@@ -13,14 +13,13 @@ public class Fraction {
 	private int denominator2;
 	private String answer;
 	private String base;
-	//default fraction variables
-	public Fraction() { 
+
+	//converts the first and second fractions into improper numbers
+	public Fraction(String op) {
+		//default fraction variables
 		this.defaultwhole = 0;
 		this.defaultnumerator = 0;
 		this.defaultdenominator = 1;
-	}
-	//converts the first and second fractions into improper numbers
-	public Fraction(String op) {
 		//include code to parse the string and set the values for the fields
 		//cut into 3 strings
 		String[] fraction = op.split(" ");
@@ -166,8 +165,8 @@ public class Fraction {
 	public String GetFrac1() {
 		return fraction1;
 	}
-	public int GetBase() {
-		return denominator1;
+	public String GetBase() {
+		return base;
 	}
 	// turns the mixed number into an improper fraction
 	public static String toImproperFrac(int whole, int numerator, int denominator) {
