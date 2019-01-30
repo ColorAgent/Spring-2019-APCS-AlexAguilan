@@ -12,14 +12,14 @@ public class Fraction {
 	private int numerator2;
 	private int denominator2;
 	private String answer;
-
+	private String base;
 	//default fraction variables
 	public Fraction() { 
 		this.defaultwhole = 0;
 		this.defaultnumerator = 0;
 		this.defaultdenominator = 1;
 	}
-	//converts the first and second fractions into improper numbers constructor
+	//converts the first and second fractions into improper numbers
 	public Fraction(String op) {
 		//include code to parse the string and set the values for the fields
 		//cut into 3 strings
@@ -29,7 +29,7 @@ public class Fraction {
 		String[] fraction1parts = operand1.split("[_/]");
 		int whole1 = 0;
 		int numerator1 = 0;
-		int denominator1 = 0;
+		int denominator1 = 1;
 		// checks the first fraction to determine if its a fraction or whole number
 		if (fraction1parts.length < 2) {
 			whole1 = Integer.parseInt(fraction1parts[0]);
@@ -102,13 +102,12 @@ public class Fraction {
 		}
 		//turns them into integers --> store in the fields
 		this.fraction2 = impropernum2 + "/" + improperdenom2;
-		this.numerator2 = improperdenom2;
+		this.numerator2 = impropernum2;
 		this.denominator2 = improperdenom2;
 	}
 	// Does the math and returns the answer
-	public String math(String op2) {
+	public String Math(String op) {
 		//do the math to add fractions
-		this.operator = op2;
 		if (denominator1 != denominator2) {
 			if (operator.contains("-")) {
 				int answerNum = (numerator2 * denominator1) - (numerator1 * denominator2);
@@ -155,6 +154,21 @@ public class Fraction {
 		}
 		return answer;
 	}
+	// gets the operator
+	public String GetOp() {
+		return operator;
+	}
+	// gets the answer
+	public String GetAnswer() {
+		return answer;
+	}
+	// gets the first fraction of the equation
+	public String GetFrac1() {
+		return fraction1;
+	}
+	public int GetBase() {
+		return denominator1;
+	}
 	// turns the mixed number into an improper fraction
 	public static String toImproperFrac(int whole, int numerator, int denominator) {
 		String answer;
@@ -174,4 +188,4 @@ public class Fraction {
 			answer = (numerator / denominator + "_" + numerator % denominator + "/" + denominator);
 			return answer;
 		}
-	}
+}
