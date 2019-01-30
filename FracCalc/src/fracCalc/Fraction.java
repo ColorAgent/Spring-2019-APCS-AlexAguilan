@@ -19,7 +19,7 @@ public class Fraction {
 		this.defaultnumerator = 0;
 		this.defaultdenominator = 1;
 	}
-	//converts the first and second fractions into improper numbers
+	//converts the first and second fractions into improper numbers constructor
 	public Fraction(String op) {
 		//include code to parse the string and set the values for the fields
 		//cut into 3 strings
@@ -106,7 +106,7 @@ public class Fraction {
 		this.denominator2 = improperdenom2;
 	}
 	// Does the math and returns the answer
-	public Fraction math(String op2) {
+	public String math(String op2) {
 		//do the math to add fractions
 		this.operator = op2;
 		if (denominator1 != denominator2) {
@@ -153,7 +153,6 @@ public class Fraction {
 				this.answer = answerNum + "/" + NewDenom; //you can simplify
 			}
 		}
-		Fraction answer = new Fraction();
 		return answer;
 	}
 	// turns the mixed number into an improper fraction
